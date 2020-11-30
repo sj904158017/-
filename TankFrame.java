@@ -1,6 +1,9 @@
 package com.sunjieyouxi.tank;
 
+
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -19,8 +22,9 @@ public class TankFrame extends Frame {
         setResizable(false);
         setTitle("坦克大战");
         setVisible(true);
-//设置窗口的一个监听，关闭按键
 
+        this.addKeyListener(new MyKeyListener());
+//设置窗口的一个监听，关闭按键
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -28,11 +32,33 @@ public class TankFrame extends Frame {
             }
         });
     }
-    //窗口重新绘制的时候会用到paint方法
     @Override
     public void  paint(Graphics g){
         g.fillRect(200,200,50,50);
+        x += 10;
+        y += 10;
 
-       // System.out.println("hello");文字的响应
+        System.out.println("hello");
     }
+
+    //键盘监听处理类
+    class MyKeyListener extends KeyAdapter{
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("key pressed");
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            System.out.println("key released");
+        }
+    }
+
 }
+
+
+
+
+
+
